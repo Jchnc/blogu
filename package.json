@@ -1,34 +1,43 @@
 {
-  "name": "blogu",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "front": "next dev",
-    "back": "node src/server/server.js",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.14.0",
-    "akar-icons": "^1.9.31",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "next": "14.2.3",
-    "prisma": "^5.14.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "sqlite3": "^5.1.7"
-  },
-  "devDependencies": {
-    "@types/node": "^20.13.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "postcss": "^8",
-    "prettier": "3.2.5",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.5"
-  }
+	"name": "blogu",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"front": "next dev --turbo",
+		"back": "bun src/server/server.ts",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@blocknote/core": "^0.13.4",
+		"@blocknote/mantine": "^0.13.4",
+		"@blocknote/react": "^0.13.4",
+		"@prisma/client": "^5.14.0",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@uidotdev/usehooks": "^2.4.1",
+		"akar-icons": "^1.9.31",
+		"babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"next": "^14.2.3",
+		"prisma": "^5.14.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"sqlite3": "^5.1.7"
+	},
+	"devDependencies": {
+		"@types/node": "^20.13.0",
+		"@types/react": "^18.3.3",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.3",
+		"postcss": "^8",
+		"prettier": "3.2.5",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.4.5"
+	}
 }

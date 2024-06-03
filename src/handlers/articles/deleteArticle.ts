@@ -1,13 +1,8 @@
-// src/handlers/articles/deleteArticle.ts
-import type { NextApiRequest, NextApiResponse } from "next";
-import type { Post } from "@/types";
+import { Request, Response } from "express";
 
-export const deleteArticle = async (
-	req: NextApiRequest,
-	res: NextApiResponse
-) => {
+export const deleteArticle = async (req: Request, res: Response) => {
 	try {
-		const prisma = (req as any).prisma;
+		const prisma = req.prisma;
 		const { id } = req.body;
 
 		if (!id) {
@@ -20,6 +15,7 @@ export const deleteArticle = async (
 
 		res.status(204).end();
 	} catch (error) {
+		console.error("Error deleting article:", error);
 		res.status(500).json({ message: "Internal server error" });
 	}
 };

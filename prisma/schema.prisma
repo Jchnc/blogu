@@ -17,18 +17,18 @@ model User {
   email    String  @unique
   name     String?
   password String
-  posts    Post[]
+  posts    Post[]  @relation("UserPosts")
 }
 
 model Post {
-  id        String   @id @default(cuid())
+  id        Int      @id @default(autoincrement())
   title     String
   intro     String
   content   String
   image     String?
   published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
   authorId  String
+  author    User     @relation(fields: [authorId], references: [id], name: "UserPosts") // Correct relation setup
   createdAt DateTime @default(now())
   lastEdit  DateTime @updatedAt
   slug      String   @unique

@@ -1,17 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { Request, Response, NextFunction } from "express";
 
 const prisma = new PrismaClient();
 
-export const connectDB = async (
-	req: NextApiRequest,
-	res: NextApiResponse,
-	next: () => Promise<void>
-) => {
+// Extend Express Request type to include Prisma client
+declare global {
+	namespace Express {
+		interface Request {
+			prisma: PrismaClient;
+		}
+	}
+}
+
+export const connectDB = (req: Request, res: Response, next: NextFunction) => {
 	try {
-		(req as any).prisma = prisma;
-		await next();
-	} finally {
-		await prisma.$disconnect();
+		req.prisma = prisma;
+		next();
+	} catch (error) {
+		console.error("Failed to connect to the database:", error);
+		res.status(500).json({ error: "Failed to connect to the database" });
 	}
 };
