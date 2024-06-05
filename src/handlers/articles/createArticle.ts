@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import type { Article } from "@/types";
 
 export const createArticle = async (req: Request, res: Response) => {
 	try {

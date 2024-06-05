@@ -18,8 +18,9 @@ export const BlockNote: React.FC<BlockNoteProps> = ({ onChange }) => {
 	// Polling editor state as there's no `on` method for updates
 	useEffect(() => {
 		if (editor) {
-			const interval = setInterval(() => {
-				const content = editor.document;
+			const interval = setInterval(async () => {
+				// const content = editor.document;
+				const content = await editor.blocksToHTMLLossy(editor.document);
 				setDocumentContent(content);
 			}, 500); // Poll every 500ms
 

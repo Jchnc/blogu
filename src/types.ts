@@ -5,8 +5,10 @@ export type Article = {
 	content: string;
 	image?: string | null;
 	published: boolean;
-	author: string;
-	authorId: string;
+	author: {
+		id: string;
+		name: string | null;
+	};
 	createdAt: string;
 	lastEdit: string;
 	slug: string;

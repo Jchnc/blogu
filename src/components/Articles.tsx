@@ -11,21 +11,21 @@ export default function Articles({
 		<section className="grid grid-cols-auto-fit gap-2 w-full">
 			{articles.map(post => (
 				<Link
-					key={self.crypto.randomUUID()}
+					key={post.id} // Use article id as key for uniqueness
 					href={`/article/${encodeURIComponent(post.slug)}`}
 					className="
-            bg-bg-primary
-            border-[1px]
-            border-bg-borders
-            rounded-2xl
-            transition-transform 
-            ease-in-out
-            duration-200
-            [&_h3]:hover:text-blue-500
-            [&_span]:hover:text-blue-500
-            [&_span]:hover:gap-3
-            [&_span]:hover:z-30
-          "
+						bg-bg-primary
+						border-[1px]
+						border-bg-borders
+						rounded-2xl
+						transition-transform 
+						ease-in-out
+						duration-200
+						[&_h3]:hover:text-blue-500
+						[&_span]:hover:text-blue-500
+						[&_span]:hover:gap-3
+						[&_span]:hover:z-30
+					"
 				>
 					<article className="p-4 flex flex-col">
 						<picture>
@@ -38,8 +38,7 @@ export default function Articles({
 						</picture>
 						<p className="text-gray-400 my-4 text-sm flex items-center gap-2">
 							<Person size={14} /> {post.author.name}
-							<Calendar size={14} />{" "}
-							{new Date(post.createdAt).toLocaleDateString()}
+							<Calendar size={14} /> {post.createdAt.toLocaleDateString()}
 						</p>
 						<h3 className="text-2xl font-bold mb-4 text-txt-primary">
 							{post.title || "Title"}

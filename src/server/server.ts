@@ -5,6 +5,7 @@ import { getArticles } from "@/handlers/articles/getArticles";
 import { createArticle } from "@/handlers/articles/createArticle";
 import { updateArticle } from "@/handlers/articles/updateArticle";
 import { deleteArticle } from "@/handlers/articles/deleteArticle";
+import { BASE_URL } from "@/utils/constants";
 
 const port = process.env.BACK_PORT || 3006;
 
@@ -13,10 +14,7 @@ const server = express();
 // Middleware to enable CORS
 server.use(
 	cors({
-		origin: [
-			"http://localhost:3000",
-			"https://mr1sjb4j-3000.use.devtunnels.ms/"
-		], // Specify the allowed origin
+		origin: [BASE_URL, "https://mr1sjb4j-3000.use.devtunnels.ms/"], // Specify the allowed origin
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Specify allowed methods
 		allowedHeaders: ["Content-Type", "Authorization"] // Specify allowed headers
 	})

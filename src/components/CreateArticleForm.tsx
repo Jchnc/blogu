@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { BlockNote } from "./BlockNote";
+import { API_URL } from "@/utils/constants";
+import ImageInput from "./ImageInput";
 
 const CreateArticleForm: React.FC = () => {
 	const [title, setTitle] = useState("");
@@ -9,12 +11,14 @@ const CreateArticleForm: React.FC = () => {
 	const [image, setImage] = useState("");
 	const [authorId, setAuthorId] = useState("");
 	const [content, setContent] = useState<any>(null);
+	const [html, setHTML] = useState<string>("");
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		if (!title.trim() || !content.trim() || !authorId.trim()) {
-			alert("Title, content, and authorId are required.");
+		// If title, intro, authorId, or content is empty, return
+		if (!title || !intro || !authorId || !content) {
+			alert("All fields are required");
 			return;
 		}
 
@@ -27,7 +31,7 @@ const CreateArticleForm: React.FC = () => {
 		};
 
 		try {
-			const response = await fetch("http://localhost:3005/api/articles", {
+			const response = await fetch(`${API_URL}/articles`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -69,7 +73,7 @@ const CreateArticleForm: React.FC = () => {
 					required
 				/>
 			</div>
-			<div className="mb-2">
+			<div className="mb-2 hidden">
 				<label
 					htmlFor="image"
 					className="uppercase text-txt-secondary text-xs font-bold"
@@ -86,6 +90,9 @@ const CreateArticleForm: React.FC = () => {
 				/>
 			</div>
 			<div className="mb-2">
+				<ImageInput />
+			</div>
+			<div className="mb-2 hidden">
 				<label className="uppercase text-txt-secondary text-xs font-bold">
 					Author ID (Debug)
 				</label>
@@ -120,8 +127,6 @@ const CreateArticleForm: React.FC = () => {
 				</label>
 			</div>
 			<BlockNote onChange={setContent} />
-			{/* Ensure content is handled as per structure */}
-			{/* {content && <pre>{JSON.stringify(content, null, 2)}</pre>} */}
 			<div className="flex flex-row gap-3">
 				<button className="bg-[#121d2f] text-txt-primary p-2 rounded-xl w-full text-center mt-4 hover:bg-[#1a3d6c] transition-all ease-in-out duration-200">
 					Cancel
